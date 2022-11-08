@@ -4,13 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Bien; 
-use App\Tier; 
 use App\Espace; 
 
-class BienController extends Controller
+class EspaceController extends Controller
 {
-    /**
+     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -20,11 +18,11 @@ class BienController extends Controller
         //
 
         try{
-            $biens = Bien::get();
+            $espaces = Espace::get();
         } catch (Exception $e) {
             dd('Message : ', $e->getMessage()); 
         }
-        return view('admin.bien.index', compact('biens')); 
+        return view('admin.espace.index', compact('espaces')); 
     }
 
     /**
@@ -40,7 +38,7 @@ class BienController extends Controller
         } catch (Exception $e) {
             dd('Message : ', $e->getMessage()); 
         }
-        return view('admin.bien.create', compact('tiers'));
+        return view('admin.espace.create', compact('tiers'));
     }
 
     /**
@@ -52,34 +50,25 @@ class BienController extends Controller
     public function store(Request $request)
     {
         //
+  
         $this->validate($request, [
-            'proprietaire' => 'required', 
-            'adresse' => 'required', 
-            'quartier' => 'required'
+            'numero' => 'required', 
+            'type' => 'required', 
+            'prix' => 'required'
         ]); 
 
-        $filename = ''; 
-
-        if($request->file('image')){
-            $file = $request->file('image'); 
-            $filename = $request->proprietaire.'-'.date('YmdHi').$file->getClientOriginalName();
-            $file->move(public_path('image-bien'), $filename);
-        }   
-
         try{
-            Bien::create([
-                'tiers_id' => $request->proprietaire,
-                'image' => $filename, 
-                'adresse' => $request->adresse,
-                'localisation' => $request->localisation,
-                'quartier' => $request->quartiter,
-                'commune' => $request->commune 
+            Espace::create([
+                'bien_id' => $request->bien_id,
+                'numero' => $request->numero, 
+                'type' => $request->type, 
+                'prix' => $request->prix
             ]); 
         } catch (Exception $e) {
             dd('Message : ', $e->getMessage()); 
         }
-        return redirect()->route('admin.bien.index'); 
 
+        return redirect()->route('admin.bien.view', $request->bien_id); 
     }
 
     /**
@@ -93,14 +82,12 @@ class BienController extends Controller
         //
 
         try {
-            $bien = Bien::find($id); 
-
-            $espaces = Espace::get(); 
+            $espace = espace::find($id); 
         } catch (Exception $e) {
             dd('Message : ', $e->getMessage()); 
         }
-
-        return view('admin.bien.show', compact('bien', 'espaces')); 
+        
+        return view('admin.espace.show', compact('espace')); 
     }
 
     /**
@@ -136,4 +123,5 @@ class BienController extends Controller
     {
         //
     }
+
 }

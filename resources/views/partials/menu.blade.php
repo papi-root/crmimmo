@@ -28,8 +28,8 @@
     </li>
 
     <li class="side-nav-item">
-        <a href="apps-calendar.html" class="side-nav-link">
-            <i class="{{ route('admin.espace.index') }} "></i>
+        <a href="{{ route('admin.espace.index') }}" class="side-nav-link">
+            <i class="uil-box"></i>
             <span> Espaces </span>
         </a>
     </li>

@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Espace extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['bien_id', 'type', 'numero', 'prix']; 
 }

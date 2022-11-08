@@ -12,7 +12,8 @@
     <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css" id="light-style">
     <link href="{{ asset('assets/css/app-dark.min.css') }}" rel="stylesheet" type="text/css" id="dark-style">
-
+    <link href="{{ asset('assets/css/vendor/buttons.bootstrap5.css') }}" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/vendor/responsive.bootstrap5.css" rel="stylesheet" type="text/css" />
     @yield('styles')
 </head>
 
@@ -283,10 +284,37 @@
             
         </div> 
 
+
+    <script src="/assets/js/vendor.min.js"></script>
+    <script src="/assets/js/app.min.js"></script>
+
+      <!-- Datatables js -->
+    <script src="/assets/js/vendor/jquery.dataTables.min.js"></script>
+    <script src="/assets/js/vendor/dataTables.bootstrap5.js"></script>
+    <script src="/assets/js/vendor/dataTables.responsive.min.js"></script>
+    <script src="/assets/js/vendor/responsive.bootstrap5.min.js"></script>
+
+    <!-- Datatable Init js -->
+    <script src="/assets/js/pages/demo.datatable-init.js"></script>
+
+    <!-- plugin js -->
+    <script src="/assets/js/vendor/dropzone.min.js"></script>
+    <!-- init js -->
+    <script src="/assets/js/ui/component.fileupload.js"></script>
     
+    <!-- Typehead -->
+    <script src="/assets/js/vendor/handlebars.min.js"></script>
+    <script src="/assets/js/vendor/typeahead.bundle.min.js"></script>
+
+    <!-- Demo -->
+    <script src="/assets/js/pages/demo.typehead.js"></script>
+
+    <!-- Timepicker -->
+    <script src="/assets/js/pages/demo.timepicker.js"></script>
+
+  
 </body> 
 
 
-<script src="/assets/js/vendor.min.js"></script>
-    <script src="/assets/js/app.min.js"></script>
+
 </html>

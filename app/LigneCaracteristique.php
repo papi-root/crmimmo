@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class LigneCaracteristique extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['espace_id', 'libelle', 'surface', 'description']; 
 }

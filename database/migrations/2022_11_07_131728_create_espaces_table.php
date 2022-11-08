@@ -15,6 +15,9 @@ class CreateEspacesTable extends Migration
     {
         Schema::create('espaces', function (Blueprint $table) {
             $table->id();
+            $table->integer('numero'); 
+            $table->integer('type'); 
+            $table->integer('prix'); 
             $table->timestamps();
         });
     }

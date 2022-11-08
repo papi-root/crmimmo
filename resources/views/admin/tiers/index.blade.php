@@ -16,9 +16,9 @@
         </div>
 
         <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered table-striped table-hover datatable datatable-Client">
-                    <thead>
+    
+                <table id="basic-datatable" class="table table-bordered table-striped table-hover datatable datatable-Client">
+                    <thead class="table-dark">
                         <tr>
                             <th width="10">
 
@@ -75,11 +75,11 @@
                                 </td>
 
                                 <td>
-                                    <a class="btn btn-xs btn-primary uil-eye" href="{{ route('admin.tiers.show', $t->id) }}">
+                                    <a class="btn btn-sm btn-primary uil-eye" href="{{ route('admin.tiers.show', $t->id) }}">
                                     
                                     </a>
                                     
-                                    <a class="btn btn-xs btn-info uil-pen" href="{{ route('admin.tiers.edit', $t->id) }}">
+                                    <a class="btn btn-sm btn-info uil-pen" href="{{ route('admin.tiers.edit', $t->id) }}">
                                     
                                     </a>
                                 
@@ -88,7 +88,7 @@
                                     <form action="{{ route('admin.tiers.destroy', $t->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
                                         <input type="hidden" name="_method" value="DELETE">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                        <button type="submit" class="btn btn-xs btn-danger uil-trash">
+                                        <button type="submit" class="btn btn-sm btn-danger uil-trash">
                                             <i class="fa fa-trash"> </i> 
                                         </button> 
                                     </form>
@@ -98,7 +98,7 @@
                         @endforeach
                     </tbody>
                 </table>
-            </div>
+           
         </div>
     </div>
 

@@ -15,6 +15,9 @@ class CreateLigneCaracteristiquesTable extends Migration
     {
         Schema::create('ligne_caracteristiques', function (Blueprint $table) {
             $table->id();
+            $table->string('libelle');
+            $table->string('surface'); 
+            $table->text('description'); 
             $table->timestamps();
         });
     }
