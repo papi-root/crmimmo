@@ -4,11 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Espace; 
+use App\Acquisition; 
+use App\Tier;
+use App\Espace;
+use Exception; 
 
-class EspaceController extends Controller
+class AcquisitionController extends Controller
 {
-     /**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -18,12 +21,13 @@ class EspaceController extends Controller
         //
 
         try{
-            $espaces = Espace::get();
-            //dd($espaces);
-        } catch (Exception $e) {
-            dd('Message : ', $e->getMessage()); 
+            $acquisitions = Acquisition::with(['tiers', 'espace'])->get(); 
+            //dd($acquisitions);
+        }catch(Exception $e) {
+            dd('Message : '. $e->getMessage()); 
         }
-        return view('admin.espace.index', compact('espaces')); 
+
+        return view('admin.acquisition.index', compact('acquisitions')); 
     }
 
     /**
@@ -35,11 +39,12 @@ class EspaceController extends Controller
     {
         //
         try{
-            $tiers = Tier::where('type_tiers', '=', 1)->get(); 
+            $tiers = Tier::where('type_tiers', '=', 2)->orWhere('type_tiers', '=', 3)->get(); 
+            $espaces = Espace::with(['bien'])->get(); 
         } catch (Exception $e) {
             dd('Message : ', $e->getMessage()); 
         }
-        return view('admin.espace.create', compact('tiers'));
+        return view('admin.acquisition.create', compact('tiers', 'espaces'));
     }
 
     /**
@@ -51,26 +56,22 @@ class EspaceController extends Controller
     public function store(Request $request)
     {
         //
-  
+
         $this->validate($request, [
-            'numero' => 'required', 
+            'client' => 'required', 
+            'espace' => 'required',
             'type' => 'required', 
-            'prix' => 'required'
+        ]);
+
+        Acquisition::create([
+            'tiers_id' => $request->client,
+            'espace_id' => $request->espace,
+            'date' => $request->date,
+            'type' => $request->type,
+            'etat' => 1,
         ]); 
 
-        try{
-            Espace::create([
-                'bien_id' => $request->bien_id,
-                'numero' => $request->numero, 
-                'type' => $request->type, 
-                'prix' => $request->prix,
-                'etat' => 1
-            ]); 
-        } catch (Exception $e) {
-            dd('Message : ', $e->getMessage()); 
-        }
-
-        return redirect()->route('admin.bien.show', $request->bien_id); 
+        return view('admin.acquisition.index');
     }
 
     /**
@@ -82,14 +83,6 @@ class EspaceController extends Controller
     public function show($id)
     {
         //
-
-        try {
-            $espace = espace::find($id); 
-        } catch (Exception $e) {
-            dd('Message : ', $e->getMessage()); 
-        }
-        
-        return view('admin.espace.show', compact('espace')); 
     }
 
     /**
@@ -125,5 +118,4 @@ class EspaceController extends Controller
     {
         //
     }
-
 }

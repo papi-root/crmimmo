@@ -15,6 +15,10 @@ class CreateEspacesTable extends Migration
     {
         Schema::create('espaces', function (Blueprint $table) {
             $table->id();
+
+            $table->unsignedInteger('bien_id'); 
+            $table->foreign('bien_id')->references('id')->on('biens')->onDelete('cascade'); 
+
             $table->integer('numero'); 
             $table->integer('type'); 
             $table->integer('prix'); 

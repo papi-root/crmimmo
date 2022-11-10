@@ -15,7 +15,11 @@ class CreateBiensTable extends Migration
     {
         Schema::create('biens', function (Blueprint $table) {
             $table->id();
-            $table->string('tiers_id'); 
+            
+            $table->unsignedInteger('tiers_id'); 
+            $table->foreign('tiers_id')->references('id')->on('tiers')->onDelete('cascade'); 
+
+            $table->text('image')->nullable(); 
             $table->string('adresse'); 
             $table->string('localisation')->nullable(); 
             $table->string('quartier')->nullable(); 

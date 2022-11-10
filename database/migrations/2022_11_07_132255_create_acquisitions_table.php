@@ -15,10 +15,18 @@ class CreateAcquisitionsTable extends Migration
     {
         Schema::create('acquisitions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('tiers_id'); 
-            $table->foreignId('espace_id'); 
+            
+            $table->unsignedInteger('tiers_id'); 
+            $table->foreign('tiers_id')->references('id')->on('tiers')->onDelete('cascade'); 
+
+            $table->unsignedInteger('espace_id'); 
+            $table->foreign('espace_id')->references('id')->on('espaces')->onDelete('cascade'); 
+
             $table->date('date'); 
             $table->integer('type'); 
+            
+            $table->integer('etat'); 
+
             $table->timestamps();
         });
     }

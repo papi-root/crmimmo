@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Tier; 
+use App\Tiers; 
 
-class TiersController extends Controller
+class tiersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +17,7 @@ class TiersController extends Controller
     {
         //
 
-        $tiers = Tier::with(['biens'])->get();
+        $tiers = Tiers::with(['biens'])->get();
 
         return view('admin.tiers.index', compact('tiers')); 
     }
@@ -50,7 +50,7 @@ class TiersController extends Controller
             'telephone' => 'required', 
         ]); 
 
-        Tier::create([
+        Tiers::create([
             'nom_complet' => $request->nom_complet, 
             'adresse' => $request->adresse,
             'telephone' => $request->telephone, 

@@ -18,7 +18,6 @@ class BienController extends Controller
     public function index()
     {
         //
-
         try{
             $biens = Bien::get();
         } catch (Exception $e) {
@@ -78,6 +77,7 @@ class BienController extends Controller
         } catch (Exception $e) {
             dd('Message : ', $e->getMessage()); 
         }
+        
         return redirect()->route('admin.bien.index'); 
 
     }
@@ -95,7 +95,7 @@ class BienController extends Controller
         try {
             $bien = Bien::find($id); 
 
-            $espaces = Espace::get(); 
+            $espaces = Espace::where('bien_id', '=', $id)->get(); 
         } catch (Exception $e) {
             dd('Message : ', $e->getMessage()); 
         }

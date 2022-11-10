@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Bien;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Tier; 
 
 class BienFactory extends Factory
 {
@@ -23,6 +24,12 @@ class BienFactory extends Factory
     {
         return [
             //
+            'image' => 'test.jpg',
+            'tiers_id' => Tier::factory(), 
+            'adresse' => $this->faker->address, 
+            'localisation' => $this->faker->address, 
+            'quartier' =>$this->faker->streetAddress , 
+            'commune' => $this->faker->city 
         ];
     }
 }

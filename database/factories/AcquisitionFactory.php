@@ -4,6 +4,8 @@ namespace Database\Factories;
 
 use App\Acquisition;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Tiers;
+use App\Bien; 
 
 class AcquisitionFactory extends Factory
 {
@@ -23,6 +25,10 @@ class AcquisitionFactory extends Factory
     {
         return [
             //
+            'tiers_id' => Tiers::factory(),
+            'bien_id' => Bien::factory(), 
+            'date' => now(), 
+            'type' => rand(1, 2)
         ];
     }
 }

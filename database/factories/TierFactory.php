@@ -23,6 +23,11 @@ class TierFactory extends Factory
     {
         return [
             //
+            'nom_complet' => $this->faker->name,
+            'adresse' => $this->faker->address, 
+            'telephone' => $this->faker->phoneNumber(), 
+            'email' => $this->faker->unique()->safeEmail(),
+            'type_tiers' => rand(1,2),
         ];
     }
 }

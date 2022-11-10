@@ -1,14 +1,6 @@
 @extends('layouts.admin')
 @section('content')
 <div class="row">
-    
-    <div style="margin-bottom: 10px;">
-        <div class="col-lg-12">
-            <a type="button" class="btn btn-success" href="{{ route("admin.bien.create") }}">
-                Nouveau Bien
-            </a>
-        </div>
-    </div>
 
     <div class="card">
         <div class="card-header">
@@ -21,24 +13,24 @@
                     <thead class="table-dark">
                         <tr>
                             <th>
-                                Tiers
+                                Propriétaire
                             </th>
                             <th>
-                                Téléphone
+                                Bien
                             </th>
                             <th>
-                                Adresse 
+                                Espace
+                            </th>
+                            <th>
+                                Type
                             </th>
 
                             <th>
-                                Localisation
+                                Montant
                             </th>
                         
                             <th>
-                                Quartier
-                            </th>
-                            <th>
-                                Commune
+                                Etat
                             </th>
                             <th>
                                 Action
@@ -46,41 +38,42 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($biens as $key => $b)
-                            <tr data-entry-id="{{ $b->id }}">
+                        @foreach($espaces as $key => $e)
+                            <tr data-entry-id="{{ $e->id }}">
+
+                                <td>
+                                    {{ $e->bien->tiers->nom_complet ?? '' }}
+                                </td>
+
+                                <td>
+                                    {{ $e->bien->adresse ?? '' }}
+                                </td>
+
+                                <td>
+                                    {{ $e->numero ?? '' }}
+                                </td>
+
+                                <td>
+                                    {{ $e->type ?? '' }}
+                                </td>
                             
                                 <td>
-                                    {{ $b->tiers->nom_complet ?? '' }}
+                                    {{ $e->prix?? '' }}
                                 </td>
-
                                 <td>
-                                    {{ $b->tiers->telephone ?? '' }}
-                                </td>
-
-                                <td>
-                                    {{ $b->adresse ?? '' }}
+                                    {{ $e->etat ?? '' }}
                                 </td>
                             
                                 <td>
-                                    {{ $b->localisation ?? '' }}
-                                </td>
-                                <td>
-                                    {{ $b->quartier ?? '' }}
-                                </td>
-                                <td>
-                                    {{  $b->commune ?? '' }}
-                                </td>
-
-                                <td>
-                                    <a class="btn btn-sm btn-primary uil-eye" href="{{ route('admin.bien.show', $b->id) }}">
+                                    <a class="btn btn-sm btn-primary uil-eye" href="{{ route('admin.bien.show', $e->id) }}">
                                     
                                     </a>
                                     
-                                    <a class="btn btn-sm btn-info uil-pen" href="{{ route('admin.bien.edit', $b->id) }}">
+                                    <a class="btn btn-sm btn-info uil-pen" href="{{ route('admin.bien.edit', $e->id) }}">
                                     
                                     </a>
 
-                                    <form action="{{ route('admin.bien.destroy', $b->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
+                                    <form action="{{ route('admin.bien.destroy', $e->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
                                         <input type="hidden" name="_method" value="DELETE">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                         <button type="submit" class="btn btn-sm btn-danger uil-trash">

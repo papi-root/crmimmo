@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Tier; 
+use App\Tiers; 
 
 class Bien extends Model
 {
@@ -14,6 +14,6 @@ class Bien extends Model
 
     public function tiers()
     {
-        return $this->belongsTo(Tier::class); 
+        return $this->belongsTo(Tiers::class); 
     }
 }

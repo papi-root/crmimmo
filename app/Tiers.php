@@ -7,9 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 use App\Bien; 
 use App\Acquisition; 
 
-class Tier extends Model
+class Tiers extends Model
 {
     use HasFactory;
+
+    protected $table = 'tiers'; 
 
     protected $fillable = ['nom_complet', 'adresse', 'telephone', 'email', 'type_tiers']; 
 
@@ -22,5 +24,4 @@ class Tier extends Model
     {
         return $this->hasMany(Acquisition::class, 'tiers_id'); 
     }
-
 }

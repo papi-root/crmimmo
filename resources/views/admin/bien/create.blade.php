@@ -78,6 +78,18 @@
                 <img id="frame" src="" class="img-fluid"/>
             </div>
 
+            <div class="form-group">
+                <label for="first_name">etat</label>
+                <select class="form-control select2" data-toggle="select2" name="proprietaire">
+                    <option> Sélectionner l'état du bien </option>
+                    <option value="0"> Indisponible </option>
+                    <option value="1"> Disponible</option>
+                    @foreach($tiers as $t)
+                        <option value="{{ $t->id }}"> {{ $t->nom_complet }} </option>
+                    @endforeach 
+                </select>
+            </div>
+
             <div class="modal-footer mt-3">
                 <button type="button" class="btn btn-light" data-bs-dismiss="modal">Fermer</button>
                 <button type="submit" class="btn btn-primary">Enregistrer</button>
