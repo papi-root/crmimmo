@@ -5,7 +5,7 @@
     <li class="side-nav-title side-nav-item">Navigation</li>
 
     <li class="side-nav-item">
-        <a href="#sidebarDashboards" class="side-nav-link">
+        <a href="{{ route('admin.dashboard.index') }}" class="side-nav-link">
             <i class="uil-home-alt"></i>
             <span> Dashboards </span>
         </a>
@@ -38,6 +38,18 @@
         <a href="{{ route('admin.acquisition.index') }}" class="side-nav-link">
             <i class="uil-clipboard-alt"></i>
             <span> Contrats </span>
+        </a>
+    </li>
+    <li class="side-nav-item">
+        <a href="{{ route('admin.permissions.index') }}" class="side-nav-link">
+            <i class="uil-clipboard-alt"></i>
+            <span> Permission </span>
+        </a>
+    </li>
+    <li class="side-nav-item">
+        <a href="{{ route('admin.users.index') }}" class="side-nav-link">
+            <i class="uil-clipboard-alt"></i>
+            <span> Utilisateurs </span>
         </a>
     </li>
 
