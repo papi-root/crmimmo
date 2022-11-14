@@ -27,7 +27,7 @@ class TierFactory extends Factory
             'adresse' => $this->faker->address, 
             'telephone' => $this->faker->phoneNumber(), 
             'email' => $this->faker->unique()->safeEmail(),
-            'type_tiers' => rand(1,2),
+            'type_tiers' => $this->faker->randomElement($array = array(1, 2, 3)),
         ];
     }
 }

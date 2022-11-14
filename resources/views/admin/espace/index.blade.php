@@ -4,7 +4,7 @@
 
     <div class="card">
         <div class="card-header">
-            Liste des Biens des Propriétaires
+            <h3> LISTE DES LOGEMENTS </h3> 
         </div>
 
         <div class="card-body">
@@ -15,14 +15,9 @@
                             <th>
                                 Propriétaire
                             </th>
+
                             <th>
-                                Bien
-                            </th>
-                            <th>
-                                Espace
-                            </th>
-                            <th>
-                                Type
+                                Logement
                             </th>
 
                             <th>
@@ -30,7 +25,7 @@
                             </th>
                         
                             <th>
-                                Etat
+                                Statut
                             </th>
                             <th>
                                 Action
@@ -47,21 +42,26 @@
 
                                 <td>
                                     {{ $e->bien->adresse ?? '' }}
-                                </td>
-
-                                <td>
-                                    {{ $e->numero ?? '' }}
-                                </td>
-
-                                <td>
-                                    {{ $e->type ?? '' }}
+                                    @if($e->type == 1)
+                                        <span class="badge bg-primary rounded-pill"> Chambre n° {{ $e->numero ?? '' }} </span> 
+                                    @elseif($e->type == 2)
+                                        <span class="badge bg-success rounded-pill"> Studio n° {{ $e->numero ?? '' }}</span> 
+                                    @elseif($e->type == 3)
+                                        <span class="badge bg-danger rounded-pill"> Appartement n° {{ $e->numero ?? '' }}</span> 
+                                    @endif
                                 </td>
                             
                                 <td>
-                                    {{ $e->prix?? '' }}
+                                    {{ number_format($e->prix, 0, '', ' ' ) ?? '' }}
                                 </td>
                                 <td>
-                                    {{ $e->etat ?? '' }}
+                                    @if($e->etat == 1)
+                                        <span class="badge bg-secondary rounded-pill"> Libre </span> 
+                                    @elseif($e->etat == 2)
+                                        <span class="badge bg-primary text-light rounded-pill"> Loué(e) </span> 
+                                    @elseif($e->etat == 3)
+                                        <span class="badge bg-success text-light rounded-pill"> Vendu(e) </span> 
+                                    @endif
                                 </td>
                             
                                 <td>

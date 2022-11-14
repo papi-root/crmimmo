@@ -36,7 +36,6 @@
                     </div>
                 </li> 
 
-                
                 <li> 
                     <div class="form-group" style="display: inline-block;">
                         <lable> Quartier </label> 
@@ -75,91 +74,92 @@
     </div>
 
     <div class="card-body">
-            <form class="card" style="padding: 10px;" method="post" action="{{route('admin.espace.store')}}">
-                @csrf
-                <h2> Ajout des Espaces ou Zones </h2> 
-                <table>
+        <form class="card" style="padding: 10px;" method="post" action="{{route('admin.espace.store')}}">
+            @csrf
+            <h2> Ajout des Logement </h2> 
+            <table>
+                <tr>
+                    <td style="width: 50px;">
+                        <div class="form-group">
+                            <label for="last_name">Numéro</label>
+                            <input type="text" class="form-control prix_select" name="numero" value="" /> 
+                        </div>
+                    </td>
+            
+                    <td style="width: 150px;">
+                        <div class="form-group">
+                            <label for="last_name">Type de Logement</label>
+                            <select name="type" class="form-control"> 
+                                <option value=""> Sélectionner le type d'espace </option> 
+                                <option value="1"> Chambre </option> 
+                                <option value="2"> Studio </option> 
+                                <option value="3"> Appartement </option> 
+                            </select> 
+                        </div>
+                    </td>
+
+                    <td style="width: 70px;">
+                        <div class="form-group">
+                            <label for="last_name">Prix</label>
+                            <input type="text" class="form-control quantite" name="prix" /> 
+                            <input type="hidden" name="bien_id" class="form-control" value="{{ $bien->id }}" />
+                        </div>
+                    </td>
+
+                    <td style="width: 80px; padding-top: 10px;">
+                        <input class="btn btn-primary" type="submit" value="Ajouter">
+                    </td>
+
+                </tr>
+            </table>
+        </form>
+
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped table-hover">
+                <thead>
                     <tr>
-                        <td style="width: 50px;">
-                            <div class="form-group">
-                                <label for="last_name">Numéro</label>
-                                <input type="text" class="form-control prix_select" name="numero" value="" /> 
-                            </div>
-                        </td>
-                
-                        <td style="width: 150px;">
-                            <div class="form-group">
-                                <label for="last_name">Type d'espace</label>
-                                <select name="type" class="form-control"> 
-                                    <option> Sélectionner le type d'espace </option> 
-                                    <option value="1"> Chambre  </option> 
-                                </select> 
-                            </div>
-                        </td>
 
-                        <td style="width: 70px;">
-                            <div class="form-group">
-                                <label for="last_name">Prix</label>
-                                <input type="text" class="form-control quantite" name="prix" /> 
-                                <input type="hidden" name="bien_id" class="form-control" value="{{ $bien->id }}" />
-                            </div>
-                        </td>
+                        <th width="10%">
+                            Numéro
+                        </th>
 
-                        <td style="width: 80px; padding-top: 10px;">
-                            <input class="btn btn-primary" type="submit" value="Ajouter">
-                        </td>
+                        <th  width="40%">
+                            Type d'Espace 
+                        </th>
 
+                        <th  width="10%">
+                            Prix 
+                        </th>
+
+                        <th>
+                            Action
+                        </th>
+                    
                     </tr>
-                </table>
-            </form>
-
-            <div class="table-responsive">
-                <table class="table table-bordered table-striped table-hover">
-                    <thead>
+                </thead>
+                <tbody>
+                    @foreach($espaces as $e)
                         <tr>
+                            <td  width="10%"> {{ $e->numero ?? '' }} </td> 
 
-                            <th width="10%">
-                                Numéro
-                            </th>
+                            <td  width="40%"> {{ $e->type ?? ''  }} </td> 
 
-                            <th  width="40%">
-                                Type d'Espace 
-                            </th>
+                            <td  width="10%"> {{ $e->prix ?? '' }} </td> 
 
-                            <th  width="10%">
-                                Prix 
-                            </th>
-
-                            <th>
-                                Action
-                            </th>
-                      
+                            <td  width="10%"> 
+                                <form action="{{ route('admin.bien.destroy', $e->id) }}" method="POST" onsubmit="return confirm('Etes-vous sûr de vouloir le supprimer ?');" style="display: inline-block;">
+                                    <input type="hidden" name="_method" value="DELETE" />
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                                    <button type="submit" class="btn btn-xs btn-danger">
+                                        <i class="fa fa-trash"> </i> 
+                                    </button> 
+                                </form>
+                            </td> 
                         </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($espaces as $e)
-                            <tr>
-                                <td  width="10%"> {{ $e->numero ?? '' }} </td> 
-
-                                <td  width="40%"> {{ $e->type ?? ''  }} </td> 
-
-                                <td  width="10%"> {{ $e->prix ?? '' }} </td> 
-
-                                <td  width="10%"> 
-                                    <form action="{{ route('admin.bien.destroy', $e->id) }}" method="POST" onsubmit="return confirm('Etes-vous sûr de vouloir le supprimer ?');" style="display: inline-block;">
-                                        <input type="hidden" name="_method" value="DELETE" />
-                                        <input type="hidden" name="_token" value="{{ csrf_token() }}" />
-                                        <button type="submit" class="btn btn-xs btn-danger">
-                                            <i class="fa fa-trash"> </i> 
-                                        </button> 
-                                    </form>
-                                </td> 
-                            </tr>
-                        @endforeach 
-                    </tbody>
-                </table>
-            </div>
-
+                    @endforeach 
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 

@@ -22,7 +22,12 @@ class CreateAcquisitionsTable extends Migration
             $table->unsignedInteger('espace_id'); 
             $table->foreign('espace_id')->references('id')->on('espaces')->onDelete('cascade'); 
 
-            $table->date('date'); 
+            $table->date('date_debut')->nullable(); 
+
+            $table->date('date_fin')->nullable(); 
+
+            $table->integer('duree')->nullable(); 
+
             $table->integer('type'); 
             
             $table->integer('etat'); 

@@ -12,7 +12,7 @@
 
     <div class="card">
         <div class="card-header">
-            Liste des Tiers
+            <h3> Liste des Tiers </h3> 
         </div>
 
         <div class="card-body">
@@ -68,9 +68,11 @@
                                 </td>
                                 <td>
                                     @if($t->type_tiers == 1)
-                                        {{ 'Propriétaire' }}
-                                    @else 
-                                        {{ 'Client' }}
+                                       <span class="badge bg-success text-light rounded-pill"> Propriétaire </span>
+                                    @elseif($t->type_tiers == 2) 
+                                        <span class="badge bg-primary rounded-pill"> Client </span>
+                                    @elseif($t->type_tiers == 3) 
+                                        <span class="badge bg-secondary rounded-pill"> Propriétaire / Client </span>
                                     @endif 
                                 </td>
 

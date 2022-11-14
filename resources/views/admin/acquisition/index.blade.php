@@ -5,14 +5,14 @@
     <div style="margin-bottom: 10px;">
         <div class="col-lg-12">
             <a type="button" class="btn btn-success" href="{{ route("admin.acquisition.create") }}">
-                Nouvelle Acquisition
+                Nouveau Contrat
             </a>
         </div>
     </div>
 
     <div class="card">
         <div class="card-header">
-            Liste des Biens des Propriétaires
+            <h3> Liste des Contrats </h3> 
         </div>
 
         <div class="card-body">
@@ -37,7 +37,7 @@
                             </th>
 
                             <th>
-                                Espace 
+                                Logement
                             </th>
 
                             <th>
@@ -49,7 +49,7 @@
                             </th>
 
                             <th>
-                                Etat
+                                Statut
                             </th>
 
                             <th>
@@ -60,7 +60,7 @@
                     <tbody>
                         @foreach($acquisitions as $key => $a)
                             <tr data-entry-id="{{ $a->id }}">
-                                <td>
+                                <td data-sort='" <?= strtotime($a->date) ?> "'>
                                     {{ Carbon\Carbon::parse($a->date)->format('d/m/Y') ?? '' }}
                                 </td>
 
@@ -77,26 +77,38 @@
                                 </td>
                             
                                 <td>
-                                    {{ $a->espace->bien->adresse . ' / ' . $a->espace->numero ?? '' }}
+                                    {{ $a->espace->bien->adresse }} 
+
+                                    @if($a->espace->type == 1)
+                                        <span class="badge bg-primary rounded-pill"> Chambre n° {{ $a->espace->numero ?? '' }} </span> 
+                                    @elseif($a->espace->type == 2)
+                                        <span class="badge bg-success rounded-pill"> Studio n° {{ $a->espace->numero ?? '' }}</span> 
+                                    @elseif($a->espace->type == 3)
+                                        <span class="badge bg-danger rounded-pill"> Appartement n° {{ $a->espace->numero ?? '' }}</span> 
+                                    @endif
+                                    
                                 </td>
 
                                 <td>
+                                   
                                     @if($a->type == 1)
-                                        <span> Vente </span> 
+                                        <span class="badge bg-primary rounded-pill"> Vente </span> 
                                     @elseif($a->type == 2)
-                                        <span> Location </span> 
+                                        <span class="badge bg-success rounded-pill"> Location </span> 
                                     @endif 
                                 </td>
 
                                 <td>
-                                    {{  $a->espace->prix ?? '' }}
+                                    {{  number_format($a->espace->prix, 0, '', ' ') ?? '' }}
                                 </td>
 
                                 <td>
                                     @if($a->etat == 1)
-                                        <span> En Cours </span> 
+                                        <span class="badge bg-warning rounded-pill"> En Cours </span> 
                                     @elseif($a->etat == 2)
-                                        <span> Fermé </span> 
+                                        <span class="badge bg-success rounded-pill"> Validé </span> 
+                                    @elseif($a->etat == 3)
+                                        <span class="badge bg-danger rounded-pill"> Résilié </span> 
                                     @endif 
                                 </td>
 

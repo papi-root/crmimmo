@@ -30,14 +30,14 @@
     <li class="side-nav-item">
         <a href="{{ route('admin.espace.index') }}" class="side-nav-link">
             <i class="uil-box"></i>
-            <span> Espaces </span>
+            <span> Logements </span>
         </a>
     </li>
 
     <li class="side-nav-item">
         <a href="{{ route('admin.acquisition.index') }}" class="side-nav-link">
-            <i class="uil-key-skeleton-alt"></i>
-            <span> Acquisition </span>
+            <i class="uil-clipboard-alt"></i>
+            <span> Contrats </span>
         </a>
     </li>
 

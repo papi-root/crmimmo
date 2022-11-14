@@ -12,7 +12,7 @@
 
     <div class="card">
         <div class="card-header">
-            Liste des Biens des Propriétaires
+            <h3> Liste des Biens des Propriétaires </h3> 
         </div>
 
         <div class="card-body">
@@ -21,7 +21,7 @@
                     <thead class="table-dark">
                         <tr>
                             <th>
-                                Tiers
+                                Propriétaire
                             </th>
                             <th>
                                 Téléphone

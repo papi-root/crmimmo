@@ -71,7 +71,12 @@ class AcquisitionController extends Controller
             'etat' => 1,
         ]); 
 
-        return view('admin.acquisition.index');
+        $espace = Espace::find($request->espace);
+
+        $espace->etat = 2;
+        $espace->save(); 
+
+        return redirect()->route('admin.acquisition.index');
     }
 
     /**

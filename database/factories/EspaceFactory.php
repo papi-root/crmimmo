@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Espace;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Bien; 
 
 class EspaceFactory extends Factory
 {
@@ -24,9 +25,10 @@ class EspaceFactory extends Factory
         return [
             //
             'bien_id' => Bien::factory(),
-            'numero' => $this->faker->Number, 
-            'type' => rand(1,2), 
-            'etat' => rand(0,1), 
+            'numero' => $this->faker->randomNumber(2, false), 
+            'type' => $this->faker->randomElement($array = array (1, 2, 3)),
+            'prix' => $this->faker->randomElement($array = array (40000 , 75000, 100000)), 
+            'etat' => $this->faker->randomElement($array = array (1, 2)), 
         ];
     }
 }
