@@ -40,6 +40,14 @@
             <span> Contrats </span>
         </a>
     </li>
+
+    <li class="side-nav-item">
+        <a href="{{ route('admin.roles.index') }}" class="side-nav-link">
+            <i class="uil-clipboard-alt"></i>
+            <span> Roles </span>
+        </a>
+    </li>
+
     <li class="side-nav-item">
         <a href="{{ route('admin.permissions.index') }}" class="side-nav-link">
             <i class="uil-clipboard-alt"></i>
@@ -52,6 +60,5 @@
             <span> Utilisateurs </span>
         </a>
     </li>
-
 </ul>
 
