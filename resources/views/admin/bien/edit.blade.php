@@ -1,30 +1,26 @@
 @extends('layouts.admin')
 @section('content')
-
 <div class="card">
     <div class="card-header">
-        MODIFICATION CLIENT 
+        MODIFICATION TIERS 
     </div>
 
     <div class="card-body">
-        <form action="{{ route("admin.clients.update", [$client->rowid]) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route("admin.bien.update", ['id' => $id]) }}" method="POST" enctype="multipart/form-data" >
             @csrf
-            @method('PUT')
-            <div class="form-group {{ $errors->has('nom_complet') ? 'has-error' : '' }}">
+            <div class="form-group">
                 <label for="first_name">Nom Complet *</label>
-                <input type="text" id="nom_complet" name="nom_complet" class="form-control" value="{{ $client->nom }}" required>
-                @if($errors->has('nom_complet'))
-                    <p class="help-block">
-                        {{ $errors->first('nom_complet') }}
-                    </p>
-                @endif
-                <p class="helper-block">
-                    {{ trans('cruds.client.fields.first_name_helper') }}
-                </p>
+                <select class="form-control select2" data-toggle="select2" name="proprietaire">
+                    <option> </option>
+                    @foreach($tiers as $t)
+                        <option value="{{ $t->id }}"> {{ $t->nom_complet }} </option>
+                    @endforeach 
+                </select>
             </div>
+
             <div class="form-group {{ $errors->has('adresse') ? 'has-error' : '' }}">
                 <label for="last_name">Adresse</label>
-                <input type="text" id="adresse" name="adresse" class="form-control" value="{{ $client->address }}">
+                <input type="text" id="adresse" name="adresse" class="form-control" value="{{ old('adresse') }}">
                 @if($errors->has('adresse'))
                     <p class="help-block">
                         {{ $errors->first('adresse') }}
@@ -34,73 +30,64 @@
                     {{ trans('cruds.client.fields.last_name_helper') }}
                 </p>
             </div>
-            <div class="form-group {{ $errors->has('telephone') ? 'has-error' : '' }}">
-                <label for="numcompte">Numéro téléphone</label>
-                <input type="text" id="telephone" name="telephone" class="form-control" value="{{ $client->phone }}">
-                @if($errors->has('telephone'))
+            <div class="form-group {{ $errors->has('localisation') ? 'has-error' : '' }}">
+                <label for="numcompte">Numero de Téléphone </label>
+                <input type="text" id="localisation" name="localisation" class="form-control" value="{{ old('localisation') }}">
+                @if($errors->has('localisation'))
                     <p class="help-block">
-                        {{ $errors->first('telephone') }}
+                        {{ $errors->first('localisation') }}
                     </p>
                 @endif
                 <p class="helper-block">
-                   
+                
                 </p>
             </div>
-            <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" class="form-control" value="{{ $client->email }}">
-                @if($errors->has('email'))
+            <div class="form-group {{ $errors->has('quartier') ? 'has-error' : '' }}">
+                <label for="quartier">Email</label>
+                <input type="quartier" id="quartier" name="quartier" class="form-control" value="{{ old('quartier') }}">
+                @if($errors->has('quartier'))
                     <p class="help-block">
-                        {{ $errors->first('email') }}
+                        {{ $errors->first('quartier') }}
                     </p>0
                 @endif
                 <p class="helper-block">
 
                 </p>
             </div>
-            <div class="form-group {{ $errors->has('numcompte') ? 'has-error' : '' }}">
-                <label for="numcompte">Numéro de compte bancaire</label>
-                <input type="text" id="numcompte" name="numcompte" class="form-control" value="{{  $client->numcompt }}">
-                @if($errors->has('numcompte'))
+
+            <div class="form-group {{ $errors->has('commune') ? 'has-error' : '' }}">
+                <label for="first_name">Type de tiers  </label>
+                <input type="text" id="commune" name="commune" class="form-control" value="{{ old('commune') }}" >
+                @if($errors->has('commune'))
                     <p class="help-block">
-                        {{ $errors->first('numcompte') }}
+                        {{ $errors->first('commune') }}
                     </p>
                 @endif
                 <p class="helper-block">
-              
-                </p>
-            </div>
-            <div class="form-group {{ $errors->has('gestcompt') ? 'has-error' : '' }}">
-                <label for="gestcompt">Gestionnaire de compte</label>
-                <input type="text" id="gestcompt" name="gestcompt" class="form-control" value="{{ $client->gestcompt }}">
-                @if($errors->has('gestcompt'))
-                    <p class="help-block">
-                        {{ $errors->first('gestcompt') }}
-                    </p>
-                @endif
-                <p class="helper-block">
-                   
+                    {{ trans('cruds.client.fields.first_name_helper') }}
                 </p>
             </div>
 
-            <div class="form-group {{ $errors->has('gestcompt') ? 'has-error' : '' }}">
-                <label for="gestcompt">Affecter à un commercial</label>
-                <select name="commercial" class="select2 form-control">
-                    <option> </option> 
-                    @foreach($users as $u)
-                        <option value="{{$u->id}}" @if($u->id == $commerciaux) selected @endif> {{ $u->name . ' ' . $u->email }} </option> 
-                    @endforeach  
-                </select> 
-                <p class="helper-block">
-                   
-                </p>
+            <div class="modal-footer mt-3">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Fermer</button>
+                <button type="submit" class="btn btn-primary">Enregistrer</button>
             </div>
-            <div>
-                <input class="btn btn-danger" type="submit" value="Enregistrer">
-            </div>
+
+       
+
         </form>
-
-
     </div>
 </div>
+
+<script>
+    function preview() {
+        frame.src = URL.createObjectURL(event.target.files[0]);
+    }
+    function clearImage() {
+        document.getElementById('formFile').value = null;
+        frame.src = "";
+    }
+</script>
+
+
 @endsection

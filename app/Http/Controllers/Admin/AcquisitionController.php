@@ -21,7 +21,7 @@ class AcquisitionController extends Controller
         //
 
         try{
-            $acquisitions = Acquisition::with(['tiers', 'espace'])->get(); 
+            $acquisitions = Acquisition::with(['tiers', 'espace'])->paginate(15); 
             //dd($acquisitions);
         }catch(Exception $e) {
             dd('Message : '. $e->getMessage()); 

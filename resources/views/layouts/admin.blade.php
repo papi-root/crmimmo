@@ -263,7 +263,8 @@
                                 </a>
 
                                 <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <a href="#" class="dropdown-item notify-item"  
+                                    onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
                                     <i class="mdi mdi-logout me-1"></i>
                                     <span>Logout</span>
                                 </a>
@@ -284,7 +285,10 @@
             
         </div> 
 
-
+        <!-- Form de deconnexion  --> 
+        <form id="logoutform" action="{{ route('logout') }}" method="POST" style="display: none;">
+            {{ csrf_field() }}
+        </form>
     <script src="/assets/js/vendor.min.js"></script>
     <script src="/assets/js/app.min.js"></script>
 

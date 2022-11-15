@@ -8,7 +8,7 @@
                     <i class="mdi mdi-account-multiple widget-icon bg-white text-success"></i>
                 </div>
                 <h6 class="text-uppercase mt-0" title="Customers">Clients</h6>
-                <h3 class="mt-3 mb-3">36,254</h3>
+                <h3 class="mt-3 mb-3">{{ $client }} </h3>
                 <p class="mb-0">
                     <span class="badge badge-light-lighten me-1">
                         <i class="mdi mdi-arrow-up-bold"></i> 5.27%</span>
@@ -25,7 +25,7 @@
                     <i class="mdi mdi-account-multiple widget-icon bg-white text-primary"></i>
                 </div>
                 <h6 class="text-uppercase mt-0" title="Customers">Logements Disponible</h6>
-                <h3 class="mt-3 mb-3">36,254</h3>
+                <h3 class="mt-3 mb-3">{{ $espace_disponible }}</h3>
                 <p class="mb-0">
                     <span class="badge badge-light-lighten me-1">
                         <i class="mdi mdi-arrow-up-bold"></i> 5.27%</span>
@@ -42,7 +42,7 @@
                     <i class="mdi mdi-account-multiple widget-icon bg-white text-warning"></i>
                 </div>
                 <h6 class="text-uppercase mt-0" title="Customers">Contrat en cours</h6>
-                <h3 class="mt-3 mb-3">36,254</h3>
+                <h3 class="mt-3 mb-3">{{ $acquisition_encours }}</h3>
                 <p class="mb-0">
                     <span class="badge badge-light-lighten me-1">
                         <i class="mdi mdi-arrow-up-bold"></i> 5.27%</span>
@@ -59,7 +59,7 @@
                     <i class="mdi mdi-account-multiple widget-icon bg-white text-danger"></i>
                 </div>
                 <h6 class="text-uppercase mt-0" title="Customers">Contrat expiré</h6>
-                <h3 class="mt-3 mb-3">36,254</h3>
+                <h3 class="mt-3 mb-3">{{ $acquisition_resilie }}</h3>
                 <p class="mb-0">
                     <span class="badge badge-light-lighten me-1">
                         <i class="mdi mdi-arrow-up-bold"></i> 5.27%</span>

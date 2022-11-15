@@ -60,7 +60,7 @@
                     <tbody>
                         @foreach($acquisitions as $key => $a)
                             <tr data-entry-id="{{ $a->id }}">
-                                <td data-sort='" <?= strtotime($a->date) ?> "'>
+                                <td data-sort='" <?= strtotime(Carbon\Carbon::parse($a->date)->format('d/m/Y') ) ?> "'>
                                     {{ Carbon\Carbon::parse($a->date)->format('d/m/Y') ?? '' }}
                                 </td>
 

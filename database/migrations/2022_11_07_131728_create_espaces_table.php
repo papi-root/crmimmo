@@ -22,6 +22,7 @@ class CreateEspacesTable extends Migration
             $table->integer('numero'); 
             $table->integer('type'); 
             $table->integer('prix'); 
+            $table->integer('etat');
             $table->timestamps();
         });
     }

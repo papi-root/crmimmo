@@ -40,6 +40,36 @@
             <span> Contrats </span>
         </a>
     </li>
+
+    <!--
+    <li class="side-nav-item">
+        <a data-bs-toggle="collapse" href="#sidebarEmail" aria-expanded="false" aria-controls="sidebarEmail" class="side-nav-link">
+            <i class="uil-clipboard-alt"></i>
+            <span> Contrats </span>
+            <span class="menu-arrow"></span>
+        </a>
+        <div class="collapse" id="sidebarEmail">
+            <ul class="side-nav-second-level">
+                <li>
+                    <a href="{{ route('admin.acquisition.index') }}">Location </a>
+                </li>
+                <li>
+                    <a href="apps-email-read.html">Vente</a>
+                </li>
+            </ul>
+        </div>
+    </li>
+--> 
+
+    <li class="side-nav-title side-nav-item">Utilisateurs</li>
+
+    <li class="side-nav-item">
+        <a href="{{ route('admin.permissions.index') }}" class="side-nav-link">
+            <i class="uil-clipboard-alt"></i>
+            <span> Roles </span>
+        </a>
+    </li>
+
     <li class="side-nav-item">
         <a href="{{ route('admin.permissions.index') }}" class="side-nav-link">
             <i class="uil-clipboard-alt"></i>

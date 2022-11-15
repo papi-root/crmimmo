@@ -81,6 +81,10 @@ class tiersController extends Controller
     public function edit($id)
     {
         //
+
+        $tiers = Tiers::where('id', '=', $id)->first();
+
+        return view('admin.tiers.edit', compact('tiers', 'id')); 
     }
 
     /**
@@ -93,6 +97,21 @@ class tiersController extends Controller
     public function update(Request $request, $id)
     {
         //
+
+        $this->validate($request, [
+            'nom_complet' => 'required', 
+            'adresse' => 'required', 
+            'telephone' => 'required', 
+        ]); 
+
+        Tiers::create([
+            'nom_complet' => $request->nom_complet, 
+            'adresse' => $request->adresse,
+            'telephone' => $request->telephone, 
+            'email' => $request->email, 
+            'type_tiers' => $request->type_tiers
+        ]); 
+
     }
 
     /**

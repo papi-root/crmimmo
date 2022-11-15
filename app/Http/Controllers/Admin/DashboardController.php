@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Tier;
+use App\Acquisition;
+use App\Espace; 
+use App\Bien; 
 
 class DashboardController extends Controller
 {
@@ -15,7 +19,13 @@ class DashboardController extends Controller
     public function index()
     {
         //
-        return view('admin.dashboard.index'); 
+        //dd(); 
+        $client = Tier::where('type_tiers', '=', 2)->orWhere('type_tiers', '=', 3)->count(); 
+        $espace_disponible = Espace::where('etat', '=', 1)->count();
+        $acquisition_encours = Acquisition::where('etat', '=', 1)->count();
+        $acquisition_resilie = Acquisition::where('etat', '=', 3)->count(); 
+
+        return view('admin.dashboard.index', compact('client' , 'espace_disponible', 'acquisition_encours' , 'acquisition_resilie')); 
     }
 
     /**
