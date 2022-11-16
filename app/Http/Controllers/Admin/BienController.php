@@ -35,7 +35,7 @@ class BienController extends Controller
     {
         //
         try{
-            $tiers = Tier::where('type_tiers', '=', 1)->get(); 
+            $tiers = Tier::where('type_tiers', '=', 1)->orWhere('type_tiers', '=', 3)->get(); 
         } catch (Exception $e) {
             dd('Message : ', $e->getMessage()); 
         }
@@ -96,11 +96,15 @@ class BienController extends Controller
             $bien = Bien::find($id); 
 
             $espaces = Espace::where('bien_id', '=', $id)->get(); 
+
+            $nbre_logement = Espace::where('bien_id', '=', $id)->count(); 
+
+
         } catch (Exception $e) {
             dd('Message : ', $e->getMessage()); 
         }
 
-        return view('admin.bien.show', compact('bien', 'espaces')); 
+        return view('admin.bien.show', compact('bien', 'espaces', 'nbre_logement')); 
     }
 
     /**

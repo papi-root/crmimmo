@@ -21,25 +21,18 @@
                     <thead class="table-dark">
                         <tr>
                             <th>
+                                Propriété
+                            </th>
+                            <th>
+                               Logement
+                            </th>
+                            <th>
                                 Propriétaire
                             </th>
                             <th>
                                 Téléphone
                             </th>
-                            <th>
-                                Adresse 
-                            </th>
-
-                            <th>
-                                Localisation
-                            </th>
-                        
-                            <th>
-                                Quartier
-                            </th>
-                            <th>
-                                Commune
-                            </th>
+                          
                             <th>
                                 Action
                             </th>
@@ -50,27 +43,22 @@
                             <tr data-entry-id="{{ $b->id }}">
                             
                                 <td>
-                                    {{ $b->tiers->nom_complet ?? '' }}
+                                    <img src="{{ '/image-bien/'. explode(',', $b->image)[0]}}" style="height: 15%; width: 30%;" />
+                                    </br > 
+                                   
+                                    <span style="font-weight: bold;" class="text-primary"> {{ $b->localisation ?? '' }}  </span> 
+                                    </br > 
+                                    <span> {{ $b->adresse ?? '' }}  </span> 
                                 </td>
 
+                                <td>
+                                    {{ $b->tiers->nom_complet ?? '' }}
+                               </td>
+                            
                                 <td>
                                     {{ $b->tiers->telephone ?? '' }}
                                 </td>
-
-                                <td>
-                                    {{ $b->adresse ?? '' }}
-                                </td>
                             
-                                <td>
-                                    {{ $b->localisation ?? '' }}
-                                </td>
-                                <td>
-                                    {{ $b->quartier ?? '' }}
-                                </td>
-                                <td>
-                                    {{  $b->commune ?? '' }}
-                                </td>
-
                                 <td>
                                     <a class="btn btn-sm btn-primary uil-eye" href="{{ route('admin.bien.show', $b->id) }}">
                                     

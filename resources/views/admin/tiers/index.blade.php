@@ -73,6 +73,8 @@
                                         <span class="badge bg-primary rounded-pill"> Client </span>
                                     @elseif($t->type_tiers == 3) 
                                         <span class="badge bg-secondary rounded-pill"> Propriétaire / Client </span>
+                                    @elseif($t->type_tiers == 4) 
+                                        <span class="badge bg-warning rounded-pill"> Prospect </span>
                                     @endif 
                                 </td>
 
@@ -167,6 +169,8 @@
                             <select class="form-control select2" name="type_tiers" > 
                                 <option value="1"> Propriétaire </option> 
                                 <option value="2"> Client </option> 
+                                <option value="3"> Propriétaire / Client </option> 
+                                <option value="4"> Prospect </option> 
                             <select>  
                             @if($errors->has('client_id'))
                                 <p class="help-block">
