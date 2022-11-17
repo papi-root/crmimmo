@@ -51,7 +51,7 @@ class EspaceController extends Controller
     public function store(Request $request)
     {
         //
-  
+
         $this->validate($request, [
             'numero' => 'required', 
             'type' => 'required', 

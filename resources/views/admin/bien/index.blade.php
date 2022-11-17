@@ -23,9 +23,7 @@
                             <th>
                                 Propriété
                             </th>
-                            <th>
-                               Logement
-                            </th>
+                          
                             <th>
                                 Propriétaire
                             </th>

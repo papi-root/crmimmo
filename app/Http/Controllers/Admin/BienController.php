@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Bien; 
 use App\Tier; 
 use App\Espace; 
+use App\Acquisition; 
 
 class BienController extends Controller
 {
@@ -95,16 +96,21 @@ class BienController extends Controller
         try {
             $bien = Bien::find($id); 
 
-            $espaces = Espace::where('bien_id', '=', $id)->get(); 
+            $espaces = Espace::where('bien_id', '=', $id)->where('bien_id', '=', $id)->orderBy('numero')->get(); 
 
             $nbre_logement = Espace::where('bien_id', '=', $id)->count(); 
 
+            $acquisitions = Acquisition::with(['tiers', 'espace'])->whereHas( 'espace', function($query) use($id){
+                    $query->where('bien_id', '=', $id); 
+                })->get(); 
 
+            $tiers = Tier::where('type_tiers', '=', 2)->orWhere('type_tiers', '=', 3)->orderBy('nom_complet')->get(); 
+            
         } catch (Exception $e) {
             dd('Message : ', $e->getMessage()); 
         }
 
-        return view('admin.bien.show', compact('bien', 'espaces', 'nbre_logement')); 
+        return view('admin.bien.show', compact('bien', 'espaces', 'nbre_logement', 'acquisitions', 'tiers')); 
     }
 
     /**
